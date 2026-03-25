@@ -1,0 +1,17 @@
+390. Elimination Game
+class Solution {
+    public int lastRemaining(int n) {
+        int step = 1, start = 1;
+        int num = n;
+        boolean left = true;
+        while(num > 1){
+            if(left || num%2 != 0){
+                start = start + step;
+            }
+            step = step * 2;
+            num = num/2;
+            left = !left;
+        }
+        return start;
+    }
+}
