@@ -1,0 +1,20 @@
+import java.util.*;
+public class Palindrome_str_with_function {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String str = "madam";
+        sc.close();
+        System.out.println(palindrome(str));
+    }
+    public static boolean palindrome(String str){
+        int l = 0, r = str.length() - 1;
+        while(l < r){
+            if(str.charAt(l) != str.charAt(r)){
+                return false;
+            }
+            l++;
+            r--;
+        }
+        return true;
+    }
+}

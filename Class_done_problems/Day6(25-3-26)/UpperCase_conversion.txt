@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class UpperCase_conversion {
+    
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String s = "";
+        String str =  sc.nextLine();
+        sc.close();
+        int len = str.length();
+        for(int i = 0; i < len; i++){
+            char ch = str.charAt(i);
+            if(ch >= 'a' && ch <= 'z'){
+                s = s + (char)(ch - 32);
+            }
+        }
+        System.out.println(s);
+    }
+}

@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Print_withoutSpace_withoutUSING_extraSTRING {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        sc.close();
+        char[] s = str.toCharArray();
+        int index = 0;
+        for(int i = 0; i < s.length; i++){
+            if(s[i] != ' '){
+                 s[index] = s[i];
+                 index++;
+            }
+        }
+        System.out.println(new String(s, 0, index));
+    }
+}

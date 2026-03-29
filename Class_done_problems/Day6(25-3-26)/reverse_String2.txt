@@ -1,0 +1,18 @@
+import java.util.*;
+public class reverse_String2 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String str =  sc.nextLine();
+        sc.close();
+        char[] s = str.toCharArray();
+        int l = 0, r = s.length - 1;
+        while(l < r){
+            char temp = s[l];
+            s[l] = s[r];
+            s[r] = temp;
+            l++;
+            r--;
+        }
+        System.out.print(new String(s));
+    }
+} 

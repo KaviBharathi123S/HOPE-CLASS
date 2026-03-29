@@ -1,0 +1,53 @@
+                                            Java String Methods
+ SAMPLE STRING : String str = "Hello World";
+
+1️. charAt(index) ---> Returns the character at a given index
+
+System.out.println(str.charAt(0));  // H
+System.out.println(str.charAt(6));  // W
+
+NOTE:  Index starts from 0
+----------------------------------------------------------------------------------------------
+2️.length() ---> Returns total number of characters
+
+System.out.println(str.length());  // 11
+
+NOTE:  Includes space also
+------------------------------------------------------------------------------------------------
+3️.toLowerCase() ---> Converts all characters to lowercase
+
+System.out.println(str.toLowerCase());  // hello world
+------------------------------------------------------------------------------------------------
+4️.toUpperCase() ---> Converts all characters to uppercase
+
+System.out.println(str.toUpperCase());  // HELLO WORLD
+--------------------------------------------------------------------------------------------------
+5️.split() ---> Splits string into parts (returns array)
+
+String[] words = str.split(" ");
+
+for(String w : words) {
+    System.out.println(w);
+}
+Output:
+Hello
+World
+--------------------------------------------------------------------------------------------------
+6️.replace(old, new) ---> Replaces characters or substring
+
+System.out.println(str.replace("World", "Java"));  
+// Hello Java
+--------------------------------------------------------------------------------------------------
+7️.substring(start, end) ---> Extracts part of string
+
+System.out.println(str.substring(0, 5));  // Hello
+System.out.println(str.substring(6));     // World
+
+NOTE: start = inclusive, end = exclusive
+--------------------------------------------------------------------------------------------------
+8️.contains() ---> Checks if substring exists
+
+System.out.println(str.contains("World"));  // true
+System.out.println(str.contains("Java"));   // false
+--------------------------------------------------------------------------------------------------
+
