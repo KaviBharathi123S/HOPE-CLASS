@@ -1,0 +1,32 @@
+/*i/p: I like java programming
+o/p: I */
+import java.util.Scanner;
+
+public class Smallest_word_in_str {
+        public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String word = "";
+        String str =  sc.nextLine();
+        sc.close();
+        int l = Integer.MAX_VALUE;
+        String finalword = "";
+        for(int i = 0; i < str.length(); i++){
+              char ch = str.charAt(i);
+              if(ch != ' '){
+                  word = word + ch;
+              }
+              else{
+                  if(word.length() < l){
+                      l = word.length();
+                      finalword = word;
+                  } 
+                   word = "";
+              }
+        }
+        if(word.length() < l){
+            finalword = word;
+            }
+        
+        System.out.print(finalword);
+     }
+}
