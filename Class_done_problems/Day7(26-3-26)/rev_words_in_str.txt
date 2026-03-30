@@ -1,0 +1,27 @@
+/* i/p : str = Hi Hello Great
+o/p : Great Hello Hi*/
+import java.util.*;
+public class rev_words_in_str{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        sc.close();
+        String s = "";
+        String word = "";
+        int n = str.length();
+        for(int i = 0; i < n ; i++){
+             char ch = str.charAt(i);
+            if(ch != ' '){
+                word = word + ch;
+            }
+            else{
+                s = word + ' ' + s;
+                word = "";
+             }
+            }
+            if(str.charAt(n-1) != ' '){
+                 s = word + ' ' + s;
+            }
+        System.out.println(s);
+    }
+}

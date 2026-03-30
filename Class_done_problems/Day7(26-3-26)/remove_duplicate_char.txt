@@ -1,0 +1,28 @@
+/*i/p: programming
+o/p: progamin */
+import java.util.*;
+public class remove_duplicate_char {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        sc.close();
+        String visited = "";
+        int n = str.length();
+        boolean flag = false;
+        for(int i = 0; i < n ; i++){
+             flag = false;
+             char ch = str.charAt(i);
+             for(int j = 0; j < visited.length(); j++) // visited char checking loop
+             { 
+                 if(ch == visited.charAt(j)){
+                      flag = true;
+                      break;
+                 }
+             }
+             if(!flag){
+                visited = visited + ch;
+             }
+        }
+        System.out.println(visited);
+    }  
+}

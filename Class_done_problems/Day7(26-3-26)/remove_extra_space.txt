@@ -1,0 +1,27 @@
+ /* i/p:hi    hello   great (with many space)
+ o/p: hi hello great (with one space) */
+import java.util.*;
+public class remove_extra_space {
+     public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        sc.close();
+        String word = "";
+        int n = str.length();
+        boolean flag = false;
+        for(int i = 0; i < n ; i++){
+             char ch = str.charAt(i);
+            if(ch != ' '){
+                word = word + ch;
+                flag = false;
+            }
+            else{
+                if(!flag){
+                word = word + ch; // ch == ' '
+            }
+            flag = true;
+        }
+            }
+            System.out.println(word);
+        }
+}
