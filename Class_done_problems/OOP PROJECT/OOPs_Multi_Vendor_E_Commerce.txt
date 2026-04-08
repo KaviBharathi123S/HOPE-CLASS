@@ -1,0 +1,193 @@
+import java.util.*;
+//ABSTRACT CLASS
+abstract class User {
+    protected String name;
+    protected int id;
+    User(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+    abstract void showDetails();
+}
+//CUSTOMER CLASS
+class Customer extends User {
+    Customer(String name, int id) {
+        super(name, id);
+    }
+    @Override
+    void showDetails() {
+        System.out.println("Customer: " + name + " | ID: " + id);
+    }
+}
+//ADMIN CLASS
+class Admin extends User {
+    private double totalEarnings = 0;
+    Admin(String name, int id) {
+        super(name, id);
+    }
+    void collectCommission(double amount) {
+        totalEarnings += amount;
+    }
+    void showEarnings() {
+        System.out.println("\nAdmin Total Earnings: " + totalEarnings);
+    }
+    @Override
+    void showDetails() {
+        System.out.println("Admin: " + name + " | ID: " + id);
+    }
+}
+//PRODUCT CLASS (ENCAPSULATION)
+class Product {
+    private String name;
+    private double price;
+    Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+    public String getName() {
+        return name;
+    }
+    public double getPrice() {
+        return price;
+    }
+    void display() {
+        System.out.println(name + " - " + price);
+    }
+}
+//VENDOR CLASS
+class Vendor extends User {
+    List<Product> products = new ArrayList<>();
+    List<Product> soldProducts = new ArrayList<>();
+    double totalPaidToAdmin = 0;
+    int Earnings = 0;
+    Vendor(String name, int id) {
+        super(name, id);
+    }
+    void addProduct(Product p) {
+        products.add(p);
+    }
+    void sellProduct(Product p, Admin admin) {
+    soldProducts.add(p);
+    double price = p.getPrice();
+    // Vendor earns full price first
+    Earnings += price;
+    // Commission calculation
+    double commission = calculateCommission(p);
+    totalPaidToAdmin += commission;
+    // Vendor pays admin
+    admin.collectCommission(commission);
+}
+    //COMMISSION LOGIC
+    double calculateCommission(Product p) {
+        double price = p.getPrice();
+        if (price > 30000)
+            return price * 0.15;
+        else if (price > 10000)
+            return price * 0.10;
+        else
+            return price * 0.05;
+    }
+    @Override
+    void showDetails() {
+        System.out.println("Vendor: " + name + " | ID: " + id);
+    }
+}
+//ORDER CLASS
+class Order {
+    private Customer customer;
+    private Product product;
+    Order(Customer customer, Product product) {
+        this.customer = customer;
+        this.product = product;
+    }
+    void showOrder() {
+        System.out.println(customer.name + " ordered " + product.getName());
+    }
+}
+//VENDOR PROFILE CLASS
+class VendorProfile {
+    private Vendor vendor;
+    VendorProfile(Vendor vendor) {
+        this.vendor = vendor;
+    }
+    void displayProfile() {
+    System.out.println("\n--- Vendor Profile ---");
+    System.out.println("Name: " + vendor.name);
+    System.out.println("\nProducts Added:");
+    for (Product p : vendor.products) {
+        System.out.println(p.getName());
+    }
+    System.out.println("\nProducts Sold:");
+    for (Product p : vendor.soldProducts) {
+        System.out.println(p.getName());
+    }
+    System.out.println("\nTotal Earnings: " + vendor.Earnings);
+    System.out.println("Total Paid to Admin: " + vendor.totalPaidToAdmin);
+    System.out.println("--------------------------");
+ }
+}
+//PLATFORM CLASS (MULTI-VENDOR CORE)
+class ECommercePlatform {
+    List<Vendor> vendors = new ArrayList<>();
+    List<Customer> customers = new ArrayList<>();
+    List<Order> orders = new ArrayList<>();
+    void addVendor(Vendor v) {
+        vendors.add(v);
+    }
+    void addCustomer(Customer c) {
+        customers.add(c);
+    }
+    void placeOrder(Customer c, Vendor v, Product p, Admin admin) {
+        Order o = new Order(c, p);
+        orders.add(o);
+        v.sellProduct(p, admin);
+        System.out.println(c.name + " ordered " + p.getName() + " from " + v.name);
+    }
+    void showAllOrders() {
+        System.out.println("\n--- All Orders ---");
+        for (Order o : orders) {
+            o.showOrder();
+        }
+    }
+}
+//MAIN CLASS
+public class OOPs_Multi_Vendor_E_Commerce{
+    public static void main(String[] args) {
+        // Admin
+        Admin admin = new Admin("Owner", 999);
+        // Platform
+        ECommercePlatform platform = new ECommercePlatform();
+        // Vendors
+        Vendor v1 = new Vendor("ElectronicsSeller", 101);
+        Vendor v2 = new Vendor("BookSeller", 102);
+        platform.addVendor(v1);
+        platform.addVendor(v2);
+        // Products
+        Product p1 = new Product("Laptop", 50000);
+        Product p2 = new Product("Phone", 20000);
+        Product p3 = new Product("Java Book", 500);
+        Product p4 = new Product("Notebook", 100);
+        v1.addProduct(p1);
+        v1.addProduct(p2);
+        v2.addProduct(p3);
+        v2.addProduct(p4);
+        // Customers
+        Customer c1 = new Customer("Kavi", 1);
+        Customer c2 = new Customer("Ammu", 2);
+        platform.addCustomer(c1);
+        platform.addCustomer(c2);
+        // MULTI-VENDOR ORDERS
+        platform.placeOrder(c1, v1, p1, admin);
+        platform.placeOrder(c2, v2, p3, admin);
+        platform.placeOrder(c1, v2, p4, admin);
+        // Show Orders
+        platform.showAllOrders();
+        // Vendor Profiles
+        VendorProfile vp1 = new VendorProfile(v1);
+        VendorProfile vp2 = new VendorProfile(v2);
+        vp1.displayProfile();
+        vp2.displayProfile();
+        // Admin Earnings
+        admin.showEarnings();
+    }
+}
