@@ -1,0 +1,24 @@
+import java.util.*;
+class Animal {
+    void eat(){
+        System.out.println("Animal is Eating");
+    }
+}
+class Cat extends Animal{
+     void Sound(){
+        System.out.println("Cat Meows");
+     }
+}
+class Puppy extends Cat{
+    void play(){
+        System.out.println("Puppy Plays");
+    }
+}
+public class Main {
+     public static void main(String[] args){
+        Puppy p = new Puppy();
+        p.eat();
+        p.Sound();
+        p.play();
+     }
+}
