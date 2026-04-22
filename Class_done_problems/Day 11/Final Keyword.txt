@@ -1,0 +1,25 @@
+//1.
+class Data{
+    int a = 10;
+}
+class D extends Data{
+    // throws error
+}
+//2.
+class Data {
+    final int a = 20;
+    void change() {
+        a = 10; // throws error
+    }
+}
+//3.
+class Data{
+    final void stand(){
+       System.out,println("Final keyword learning");
+    }
+}
+class C extends Data{
+    void stand(){
+        //throws error
+    }
+}

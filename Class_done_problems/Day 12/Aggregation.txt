@@ -1,0 +1,26 @@
+class Driver{
+    String name;
+    Driver(String name){
+        this.name = name;
+    }
+    void drive(){
+        System.out.println("driver came");
+    }
+}
+class Car{
+    Driver d;
+    Car(Driver d){
+        this.d = d;
+    }
+    void  start(){
+        d.drive();
+        System.out.println("Car has Started");
+    }
+}
+public class Aggregation{
+    public static void main(String[] args){
+        Driver d = new Driver("Rocky");
+        Car c = new Car(d);
+        c.start();
+    }
+}

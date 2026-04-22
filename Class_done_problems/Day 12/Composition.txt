@@ -1,0 +1,21 @@
+class engine{
+    void on(){
+        System.out.println(" engine on");
+    }
+}
+class car{
+    engine e;
+    car(){
+        e = new engine();
+    }
+    void start(){
+        e.on();
+        System.out.println("car has started");
+    }
+}
+public class Composition{
+    public static void main(String[] args){
+        car c = new car();
+        c.start();
+    }
+}

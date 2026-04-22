@@ -1,0 +1,40 @@
+import java.util.*;
+public class Longest_Mountain_Subarray {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++){
+            arr[i] = sc.nextInt();
+        }
+        sc.close();
+        int start = -1, end = -1, maxlen = 0;
+        int left = 0, right = 0; 
+        int len = 0;
+        for(int i = 1; i < n - 1; i++){
+            if(arr[i] > arr[i - 1] && arr[i] > arr[i + 1]){
+                left = i;
+                right = i;
+            while((left > 0 && arr[left] > arr[left - 1])&&(right < n - 1 && arr[right] > arr[right + 1])){
+                left--;   
+                right++;
+            }
+        }
+            len = right - left + 1;
+            if(len > maxlen){
+                maxlen = len;
+                start = left;
+                end = right;
+            }
+        }
+    
+        if(maxlen >= 3){
+        for(int j = start; j <= end; j++){
+            System.out.print(arr[j] + " ");
+        }
+    }
+     else{
+         System.out.print("[ ]");
+    }
+    }
+}

@@ -1,0 +1,20 @@
+import java.util.*;
+class Amazona {
+    void search(String product){
+        System.out.println("Product " + product);
+    }
+    void search(String product, int price){
+        System.out.println("Product " + product + " Price " + price);
+    }
+    void search(String product, String ele){
+        System.out.println("Product " + product + " Electronics " + ele);
+    }
+}
+public class MethodOverloading{
+    public static void main(String[] args){
+        Amazona a = new Amazona ();
+        a.search("laptop");
+        a.search("laptop", 50000);
+        a.search("laptop", "electronics");
+    }
+}

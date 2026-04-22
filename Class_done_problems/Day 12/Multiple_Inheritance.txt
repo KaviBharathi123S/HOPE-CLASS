@@ -1,0 +1,22 @@
+import java.util.*;
+interface Dad{
+     void HS();
+}
+interface Mom{
+     void Business();
+}
+ class Child implements Dad,Mom{
+     public void HS(){
+         System.out.println("Higher Studies First");
+     }
+     public void Business(){
+         System.out.println("Then Business");
+     }
+}
+public class MultipleInheritance{
+    public static void main(String[] args){
+        Child c = new Child();
+        c.HS();
+        c.Business();
+    }
+}
